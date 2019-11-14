@@ -1,0 +1,60 @@
+autoCorrelation|double|DoubleArrayList,int,double,double|Returns the auto-correlation of a data sequence.
+correlation|double|DoubleArrayList,double,DoubleArrayList,double|Returns the correlation of two data sequences.
+covariance|double|DoubleArrayList,DoubleArrayList|Returns the covariance of two data sequences, which is  cov(x,y) = (1/(size()-1)) * Sum((x[i]-mean(x)) * (y[i]-mean(y))).
+durbinWatson|double|DoubleArrayList|Durbin-Watson computation.
+frequencies|void|DoubleArrayList,DoubleArrayList,IntArrayList|Computes the frequency (number of occurances, count) of each distinct value in the given sorted data.
+geometricMean|double|DoubleArrayList|Returns the geometric mean of a data sequence.
+geometricMean|double|int,double|Returns the geometric mean of a data sequence.
+harmonicMean|double|int,double|Returns the harmonic mean of a data sequence.
+incrementalUpdate|void|DoubleArrayList,int,int,double[]|Incrementally maintains and updates minimum, maximum, sum and sum of squares of a data sequence.
+incrementalUpdateSumsOfPowers|void|DoubleArrayList,int,int,int,int,double[]|Incrementally maintains and updates various sums of powers of the form Sum(data[i]k).
+incrementalWeightedUpdate|void|DoubleArrayList,DoubleArrayList,int,int,double[]|Incrementally maintains and updates sum and sum of squares of a weighted data sequence.
+kurtosis|double|DoubleArrayList,double,double|Returns the kurtosis (aka excess) of a data sequence, which is -3 + moment(data,4,mean) / standardDeviation4.
+kurtosis|double|double,double|Returns the kurtosis (aka excess) of a data sequence.
+lag1|double|DoubleArrayList,double|Returns the lag-1 autocorrelation of a dataset;  Note that this method has semantics different from autoCorrelation(..., 1);
+max|double|DoubleArrayList|Returns the largest member of a data sequence.
+mean|double|DoubleArrayList|Returns the arithmetic mean of a data sequence;  That is Sum( data[i] ) / data.size().
+meanDeviation|double|DoubleArrayList,double|Returns the mean deviation of a dataset.
+median|double|DoubleArrayList|Returns the median of a sorted data sequence.
+min|double|DoubleArrayList|Returns the smallest member of a data sequence.
+moment|double|DoubleArrayList,int,double|Returns the moment of k-th order with constant c of a data sequence, which is Sum( (data[i]-c)k ) / data.size().
+moment|double|int,double,int,double[]|Returns the moment of k-th order with constant c of a data sequence, which is Sum( (data[i]-c)k ) / data.size().
+pooledMean|double|int,double,int,double|Returns the pooled mean of two data sequences.
+pooledVariance|double|int,double,int,double|Returns the pooled variance of two data sequences.
+product|double|DoubleArrayList|Returns the product of a data sequence, which is Prod( data[i] ).
+product|double|int,double|Returns the product, which is Prod( data[i] ).
+quantile|double|DoubleArrayList,double|Returns the phi-quantile; that is, an element elem for which holds that phi percent of data elements are less than elem.
+quantileInverse|double|DoubleArrayList,double|Returns how many percent of the elements contained in the receiver are <= element.
+quantiles|DoubleArrayList|DoubleArrayList,DoubleArrayList|Returns the quantiles of the specified percentages.
+rankInterpolated|double|DoubleArrayList,double|Returns the linearly interpolated number of elements in a list less or equal to a given element.
+rms|double|int,double|Returns the RMS (Root-Mean-Square) of a data sequence.
+sampleKurtosis|double|DoubleArrayList,double,double|Returns the sample kurtosis (aka excess) of a data sequence.
+sampleKurtosis|double|int,double,double|Returns the sample kurtosis (aka excess) of a data sequence.
+sampleKurtosisStandardError|double|int|Return the standard error of the sample kurtosis.
+sampleSkew|double|DoubleArrayList,double,double|Returns the sample skew of a data sequence.
+sampleSkew|double|int,double,double|Returns the sample skew of a data sequence.
+sampleSkewStandardError|double|int|Return the standard error of the sample skew.
+sampleStandardDeviation|double|int,double|Returns the sample standard deviation.
+sampleVariance|double|DoubleArrayList,double|Returns the sample variance of a data sequence.
+sampleVariance|double|int,double,double|Returns the sample variance of a data sequence.
+sampleWeightedVariance|double|double,double,double|Returns the sample weighted variance of a data sequence.
+skew|double|DoubleArrayList,double,double|Returns the skew of a data sequence, which is moment(data,3,mean) / standardDeviation3.
+skew|double|double,double|Returns the skew of a data sequence.
+split|DoubleArrayList[]|DoubleArrayList,DoubleArrayList|Splits (partitions) a list into sublists such that each sublist contains the elements with a given range.
+standardDeviation|double|double|Returns the standard deviation from a variance.
+standardError|double|int,double|Returns the standard error of a data sequence.
+standardize|void|DoubleArrayList,double,double|Modifies a data sequence to be standardized.
+sum|double|DoubleArrayList|Returns the sum of a data sequence.
+sumOfInversions|double|DoubleArrayList,int,int|Returns the sum of inversions of a data sequence, which is Sum( 1.0 / data[i]).
+sumOfLogarithms|double|DoubleArrayList,int,int|Returns the sum of logarithms of a data sequence, which is Sum( Log(data[i]).
+sumOfPowerDeviations|double|DoubleArrayList,int,double|Returns Sum( (data[i]-c)k ); optimized for common parameters like c == 0.0 and/or k == -2 ..
+sumOfPowerDeviations|double|DoubleArrayList,int,double,int,int|Returns Sum( (data[i]-c)k ) for all i = from ..
+sumOfPowers|double|DoubleArrayList,int|Returns the sum of powers of a data sequence, which is Sum ( data[i]k ).
+sumOfSquaredDeviations|double|int,double|Returns the sum of squared mean deviation of of a data sequence.
+sumOfSquares|double|DoubleArrayList|Returns the sum of squares of a data sequence.
+trimmedMean|double|DoubleArrayList,double,int,int|Returns the trimmed mean of a sorted data sequence.
+variance|double|double|Returns the variance from a standard deviation.
+variance|double|int,double,double|Returns the variance of a data sequence.
+weightedMean|double|DoubleArrayList,DoubleArrayList|Returns the weighted mean of a data sequence.
+weightedRMS|double|double,double|Returns the weighted RMS (Root-Mean-Square) of a data sequence.
+winsorizedMean|double|DoubleArrayList,double,int,int|Returns the winsorized mean of a sorted data sequence.
