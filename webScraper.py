@@ -2,7 +2,11 @@
 # "https://dst.lbl.gov/ACSSoftware/colt/api/cern/jet/stat/Descriptive.html"
 
 # Links to sites
+# Colt
 website1 = "https://dst.lbl.gov/ACSSoftware/colt/api/cern/jet/stat/Descriptive.html"
+# Manhout
+website2 = "https://mahout.apache.org/docs/0.13.0/api/docs/mahout-math/"
+# 
 
 # Import
 from bs4 import BeautifulSoup
