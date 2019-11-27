@@ -1,12 +1,8 @@
 # Scrape the first webpage
-# "https://dst.lbl.gov/ACSSoftware/colt/api/cern/jet/stat/Descriptive.html"
 
-# Links to sites
+# Links to site
 # Colt
 website1 = "https://dst.lbl.gov/ACSSoftware/colt/api/cern/jet/stat/Descriptive.html"
-# Manhout
-website2 = "https://mahout.apache.org/docs/0.13.0/api/docs/mahout-math/"
-# 
 
 # Import
 from bs4 import BeautifulSoup
@@ -79,3 +75,31 @@ for attribute in attributes:
     outputFile.write("|".join(attribute))
     outputFile.write("\n")
 outputFile.close()
+
+# Scrape second site
+# Visit each set of links
+toVisit = [
+    "https://mahout.apache.org/docs/0.13.0/api/docs/mahout-integration/overview-summary.html",
+    "https://mahout.apache.org/docs/0.13.0/api/docs/mahout-math/overview-summary.html",
+    "https://mahout.apache.org/docs/0.13.0/api/docs/mahout-mr/overview-summary.html"
+]
+
+for link in toVisit:
+    response = requests.get(link)
+    soup = BeautifulSoup(response.text, "html.parser")
+
+    divs = soup.find_all("div")
+    table = None
+    for div in divs:
+        # Get the table with the links in it
+        try:
+            if div['class'] == ['contentContainer']:
+                table = div.find("table")
+        except:
+            pass
+    # Get the table bodies
+    bodies = table.find('tbody')
+    # Get table data
+    tds = bodies.find_all('td')
+    print(tds[0])
+    break
