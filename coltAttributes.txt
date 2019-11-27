@@ -58,3 +58,27 @@ variance|double|int,double,double|Returns the variance of a data sequence.
 weightedMean|double|DoubleArrayList,DoubleArrayList|Returns the weighted mean of a data sequence.
 weightedRMS|double|double,double|Returns the weighted RMS (Root-Mean-Square) of a data sequence.
 winsorizedMean|double|DoubleArrayList,double,int,int|Returns the winsorized mean of a sorted data sequence.
+cosineDistance|double|CharSequence,CharSequence|Measures the cosine distance between two character sequences.
+manhattanDistance|double|double[],double[]|Calculates the L1 (sum of abs) distance between two points.
+chebyshevDistance|double|double[],double[]|Calculates the L∞ (max of abs) distance between two points.
+add|void|double|Appends the specified element to the end of this list.
+sum|int|int[]|Computes the sum of the values
+errorRate|double|double[],double[]|Deprecated. 
+scale|double[]|double,double[]|Create a copy of an array scaled by a value.
+euclideanDistance|double|double[],double[]|Compute the distance between two n-dimensional vectors.  The two vectors are required to have the same dimension.
+distance1|double|Vector<Euclidean1D>|Compute the distance between the instance and another vector according to the L1 norm.  Calling this method is equivalent to calling: q.subtract(p).getNorm1() except that no intermediate vector is built
+distanceInf|double|Vector<Euclidean1D>|Compute the distance between the instance and another vector according to the L∞ norm.  Calling this method is equivalent to calling: q.subtract(p).getNormInf() except that no intermediate vector is built
+ebeAdd|double[]|double[],double[]|Creates an array whose contents will be the element-by-element addition of the arguments.
+ebeDivide|FieldVector<T>|FieldVector<T>|Element-by-element division.
+ebeMultiply|FieldVector<T>|FieldVector<T>|Element-by-element multiplication.
+ebeSubtract|double[]|double[],double[]|Creates an array whose contents will be the element-by-element subtraction of the second argument from the first.
+safeNorm|double|double[]|Returns the Cartesian norm (2-norm), handling both overflow and underflow. Translation of the minpack enorm subroutine. The redistribution policy for MINPACK is available here, for convenience, it is reproduced below.
+g|double|double,double[]|Compute the value of the switching function.
+computeDividedDifference|double[]|double[],double[]|Return a copy of the divided difference array.  The divided difference array is defined recursively by f[x0] = f(x0) f[x0,x1,...,xk] = (f[x1,...,xk] - f[x0,...,x[k-1]]) / (xk - x0)The computational complexity is O(n2) where n is the common length of x and y.
+canberraDistance|double|double[],double[]|Compute the distance between two n-dimensional vectors.
+meanDifference|double|double[],double[]|Returns the mean of the (signed) differences between corresponding elements of the input arrays -- i.e., sum(sample1[i] - sample2[i]) / sample1.length.
+varianceDifference|double|double[],double[],double|Returns the variance of the (signed) differences between corresponding elements of the input arrays -- i.e., var(sample1[i] - sample2[i]).
+equals|boolean|Object|Test for the equality of two derivative structures.  Derivative structures are considered equal if they have the same number of free parameters, the same derivation order, and the same derivatives.
+checkNonNegative|void|long[]|Check that all entries of the input array are >= 0.
+checkPositive|void|double[]|Check that all entries of the input array are strictly positive.
+chiSquare|double|double[],long[]|Computes the Chi-Square statistic comparing observed and expected frequency counts.  This statistic can be used to perform a Chi-Square test evaluating the null hypothesis that the observed counts follow the expected distribution.
