@@ -3,10 +3,10 @@ from nltk.stem import WordNetLemmatizer
 
 def clean_sentence(sentence):
     w1 = re.sub(r"[^a-zA-Z0-9\s \n]", ' ', sentence)
-    w2 = re.sub('\.', ' ', w1)
+    w2 = re.sub(r'\.', ' ', w1)
     w3 = re.sub(r"[^\20-\x7F]", ' ', w2)
-    w4 = re.sub(' +', ' ', w3)
-    return re.sub(' $', '', w4)
+    w4 = re.sub(r' +', ' ', w3)
+    return re.sub(r' $', '', w4)
 
 
 class Attributes:
