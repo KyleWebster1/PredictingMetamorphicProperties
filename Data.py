@@ -23,10 +23,6 @@ class Attributes:
                     recombinedWord = ''
                     for word in temp:
                         recombinedWord += self.lemma.lemmatize(word) + " "
-                    data[i] = recombinedWord
-                totalData.append(re.sub(' $', '', recombinedWord))
+                    data[i] = re.sub(' $', '', recombinedWord)
+                totalData.append(data)
         return totalData
-
-
-a = Attributes()
-print(a.get_colt())
