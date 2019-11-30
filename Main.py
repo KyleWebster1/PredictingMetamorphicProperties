@@ -1,32 +1,33 @@
-#Kyle Webster
-#Dan Bachler
+# Kyle Webster
+# Dan Bachler
 
-#Input Features: Input Type(s), Number of Inputs, Output Type, Relevancy/Total, hasMath?
-import Data
-from sklearn.svm import SVC
-from sklearn.naive_bayes import MultinomialNB
-from sklearn.model_selection  import cross_validate
+import numpy as np
+from nltk.tokenize import sent_tokenize, word_tokenize
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
-from nltk.tokenize import sent_tokenize, word_tokenize
-import numpy as np
-import re
+from sklearn.model_selection import cross_validate
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.svm import SVC
+
+# Input Features: Input Type(s), Number of Inputs, Output Type, Relevancy/Total, hasMath?
+import Data
 
 d = Data.Attributes()
 c = d.get_colt()
 
-
 vocab = set()
-temp =sent_tokenize(open('coltAttributes.txt', 'r').read())
+temp = sent_tokenize(open('coltAttributes.txt', 'r').read())
 for sent in temp:
     for phrase in sent.split('|'):
         for t in word_tokenize(phrase):
             vocab.add(t)
 
-cv = CountVectorizer(max_features=10000, strip_accents='unicode', analyzer='word', stop_words=None, tokenizer=lambda doc: doc)
-#cv.fit_transform(open('coltAttributes.txt', 'r').read().split('\n'))
-tf = TfidfVectorizer(max_features=10000, strip_accents='unicode', analyzer='word', stop_words=None, tokenizer=lambda doc: doc)
-#tf.fit_transform(open('coltAttributes.txt', "r"))
+cv = CountVectorizer(max_features=10000, strip_accents='unicode', analyzer='word', stop_words=None,
+                     tokenizer=lambda doc: doc)
+# cv.fit_transform(open('coltAttributes.txt', 'r').read().split('\n'))
+tf = TfidfVectorizer(max_features=10000, strip_accents='unicode', analyzer='word', stop_words=None,
+                     tokenizer=lambda doc: doc)
+# tf.fit_transform(open('coltAttributes.txt', "r"))
 svm = SVC()
 nb = MultinomialNB()
 
@@ -85,10 +86,10 @@ for row in c:
     perData.append(row)
     # else:
     #     pass
-        #print(row[0])
+    # print(row[0])
 ad, ed, cd, vd, md, pd = [], [], [], [], [], []
 missing = []
-#ad = tf.fit_transform(addData)
+# ad = tf.fit_transform(addData)
 cv.fit_transform([open('coltAttributes.txt', 'r').read(), addC, excC, incC, invC, mulC, perC])
 # for w in range(len(addData)):
 #     ad.append(cv.transform(addData[w]))
@@ -106,8 +107,8 @@ for val in missing:
 print("SVM")
 scores = cross_validate(svm, addData, al[:len(addData)], cv=10, scoring=('precision', 'recall', 'f1', 'roc_auc'))
 for key in scores:
-   print(key, np.average(scores[key]))
+    print(key, np.average(scores[key]))
 print("NB")
 scores = cross_validate(nb, addData, al[:len(addData)], cv=10, scoring=('precision', 'recall', 'f1', 'roc_auc'))
 for key in scores:
-   print(key, np.average(scores[key]))
+    print(key, np.average(scores[key]))

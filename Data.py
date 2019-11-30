@@ -1,5 +1,7 @@
 import re
+
 from nltk.stem import WordNetLemmatizer
+
 
 def clean_sentence(sentence):
     w1 = re.sub(r"[^a-zA-Z0-9\s \n]", ' ', sentence)
@@ -27,19 +29,19 @@ class Attributes:
                         temp = self.lemma.lemmatize(word)
                         if temp not in wordConversion:
                             wordConversion[temp] = count
-                            count+= 1
+                            count += 1
                         recombinedWord += self.lemma.lemmatize(word) + " "
                     # if re.sub(' $', '', recombinedWord) not in wordConversion:
                     #     wordConversion[re.sub(' $', '', recombinedWord)] = count
                     #     count += 1
                     data[i] = re.sub(' $', '', recombinedWord)
                 features = []
-                #print(wordConversion)
+                # print(wordConversion)
                 features.append((wordConversion[data[0]]))
                 features.append((wordConversion[data[1].split()[0]]))
-                #Get number of inputs
+                # Get number of inputs
                 features.append(len(data[2].split(',')))
-                #has mathematical function
+                # has mathematical function
                 features.append("(" in data[3])
                 totalData.append(features)
         return totalData

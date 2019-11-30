@@ -4,14 +4,15 @@
 # Colt
 website1 = "https://dst.lbl.gov/ACSSoftware/colt/api/cern/jet/stat/Descriptive.html"
 
+import re
+
+import requests
 # Import
 from bs4 import BeautifulSoup
-import requests
-import urllib.request
-import re
 
 # Get web info for first site
 response = requests.get(website1)
+
 
 # Function for parsing information from tr tag for first database
 def parseTRtag(tag):
@@ -33,7 +34,7 @@ def parseTRtag(tag):
     # Get input types
     inputTypes = separateName[1]
     inputTypes = inputTypes.split(",")
-    for i in range(0,len(inputTypes)):
+    for i in range(0, len(inputTypes)):
         temp = inputTypes[i].strip()
         temp = re.sub("\xa0", " ", temp)
         inputTypes[i] = temp.split(" ")[0]
@@ -44,7 +45,7 @@ def parseTRtag(tag):
     text = text.strip()
 
     # Return values
-    return([name, returnType, inputTypes, text])
+    return ([name, returnType, inputTypes, text])
 
 
 # Parse response
