@@ -79,60 +79,95 @@ for row in c:
     mulData.append(row)
     perData.append(row)
 
+# Format output into CSV file for creating of graphics
+# One file for each function set
+
+# ADD functions
+addFuncFile = open("addMetrics.csv", "w")
+addFuncFile.write("Type, Score, Algorithm\n")
 print("SVM ADD")
 scores = cross_validate(svm, addData, al[:len(addData)], cv=10, scoring=('precision', 'recall', 'f1', 'roc_auc'))
-# Write to a csv file the scores
-print("SVM")
 for key in scores:
-    print(key, np.average(scores[key]))
+    print(key, np.average(scores[key])*100, "%")
+    addFuncFile.write(str(key) + "," + str(np.average(scores[key])) + ",SVM\n")
 print("NB ADD")
 scores = cross_validate(nb, addData, al[:len(addData)], cv=10, scoring=('precision', 'recall', 'f1', 'roc_auc'))
 for key in scores:
     print(key, np.average(scores[key])*100, "%")
+    addFuncFile.write(str(key) + "," + str(np.average(scores[key])) + ",NB\n")
+addFuncFile.close()
 
+# EXC functions
+excFuncFile = open("excMetrics.csv", "w")
+excFuncFile.write("Type, Score, Algorithm\n")
 print("\nSVM EXC")
 scores = cross_validate(svm, excData, el[:len(excData)], cv=10, scoring=('precision', 'recall', 'f1', 'roc_auc'))
 for key in scores:
     print(key, np.average(scores[key])*100, "%")
+    excFuncFile.write(str(key) + "," + str(np.average(scores[key])) + ",SVM\n")
 print("NB EXC")
 scores = cross_validate(nb, excData, el[:len(excData)], cv=10, scoring=('precision', 'recall', 'f1', 'roc_auc'))
 for key in scores:
     print(key, np.average(scores[key])*100, "%")
+    excFuncFile.write(str(key) + "," + str(np.average(scores[key])) + ",NB\n")
+excFuncFile.close()
 
+# INC functions
+incFuncFile = open("incMetrics.csv", "w")
+incFuncFile.write("Type, Score, Algorithm\n")
 print("\nSVM INC")
 scores = cross_validate(svm, incData, cl[:len(incData)], cv=10, scoring=('precision', 'recall', 'f1', 'roc_auc'))
 for key in scores:
     print(key, np.average(scores[key])*100, "%")
+    incFuncFile.write(str(key) + "," + str(np.average(scores[key])) + ",SVM\n")
 print("NB INC")
 scores = cross_validate(nb, incData, cl[:len(incData)], cv=10, scoring=('precision', 'recall', 'f1', 'roc_auc'))
 for key in scores:
     print(key, np.average(scores[key])*100, "%")
+    incFuncFile.write(str(key) + "," + str(np.average(scores[key])) + ",NB\n")
+incFuncFile.close()
 
+# INV functions
+invFuncFile = open("invMetrics.csv", "w")
+invFuncFile.write("Type, Score, Algorithm\n")
 print("\nSVM INV")
 scores = cross_validate(svm, invData, vl[:len(invData)], cv=10, scoring=('precision', 'recall', 'f1', 'roc_auc'))
 for key in scores:
     print(key, np.average(scores[key])*100, "%")
+    invFuncFile.write(str(key) + "," + str(np.average(scores[key])) + ",SVM\n")
 print("NB INV")
 scores = cross_validate(nb, invData, vl[:len(invData)], cv=10, scoring=('precision', 'recall', 'f1', 'roc_auc'))
 for key in scores:
     print(key, np.average(scores[key])*100, "%")
+    invFuncFile.write(str(key) + "," + str(np.average(scores[key])) + ",NB\n")
+invFuncFile.close()
 
+# MUL functions
+mulFuncFile = open("mulMetrics.csv", "w")
+mulFuncFile.write("Type, Score, Algorithm\n")
 print("\nSVM MUL")
 scores = cross_validate(svm, mulData, ml[:len(mulData)], cv=10, scoring=('precision', 'recall', 'f1', 'roc_auc'))
 for key in scores:
     print(key, np.average(scores[key])*100, "%")
+    mulFuncFile.write(str(key) + "," + str(np.average(scores[key])) + ",SVM\n")
 print("NB MUL")
 scores = cross_validate(nb, mulData, ml[:len(mulData)], cv=10, scoring=('precision', 'recall', 'f1', 'roc_auc'))
 for key in scores:
     print(key, np.average(scores[key])*100, "%")
+    mulFuncFile.write(str(key) + "," + str(np.average(scores[key])) + ",NB\n")
+mulFuncFile.close()
 
+# PER functions
+perFuncFile = open("perMetrics.csv", "w")
+perFuncFile.write("Type, Score, Algorithm\n")
 print("\nSVM PER")
 scores = cross_validate(svm, perData, pl[:len(perData)], cv=10, scoring=('precision', 'recall', 'f1', 'roc_auc'))
 for key in scores:
     print(key, np.average(scores[key])*100, "%")
+    perFuncFile.write(str(key) + "," + str(np.average(scores[key])) + ",SVM\n")
 print("NB PER")
 scores = cross_validate(nb, perData, pl[:len(perData)], cv=10, scoring=('precision', 'recall', 'f1', 'roc_auc'))
 for key in scores:
-    print(key, np.average(scores[key])*100)
-
     print(key, np.average(scores[key])*100, "%")
+    perFuncFile.write(str(key) + "," + str(np.average(scores[key])) + ",NB\n")
+perFuncFile.close()
