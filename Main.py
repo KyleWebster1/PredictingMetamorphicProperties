@@ -5,6 +5,7 @@ import numpy as np
 from nltk.tokenize import sent_tokenize, word_tokenize
 from sklearn.model_selection import cross_validate
 from sklearn.naive_bayes import MultinomialNB
+from sklearn.svm import LinearSVC
 from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
 import warnings
@@ -23,7 +24,7 @@ for sent in temp:
         for t in word_tokenize(phrase):
             vocab.add(t)
 
-svm = SVC(gamma='scale')
+svm = LinearSVC(class_weight='balanced')
 nb = GaussianNB()
 
 addData, al, excData, el, incData, cl, invData, vl, mulData, ml, perData, pl = [], [], [], [], [], [], [], [], [], [], [], []
@@ -87,44 +88,51 @@ for key in scores:
 print("NB ADD")
 scores = cross_validate(nb, addData, al[:len(addData)], cv=10, scoring=('precision', 'recall', 'f1', 'roc_auc'))
 for key in scores:
-    print(key, np.average(scores[key])*100)
+    print(key, np.average(scores[key])*100, "%")
+
 print("\nSVM EXC")
 scores = cross_validate(svm, excData, el[:len(excData)], cv=10, scoring=('precision', 'recall', 'f1', 'roc_auc'))
 for key in scores:
-    print(key, np.average(scores[key])*100)
+    print(key, np.average(scores[key])*100, "%")
 print("NB EXC")
 scores = cross_validate(nb, excData, el[:len(excData)], cv=10, scoring=('precision', 'recall', 'f1', 'roc_auc'))
 for key in scores:
-    print(key, np.average(scores[key])*100)
+    print(key, np.average(scores[key])*100, "%")
+
 print("\nSVM INC")
 scores = cross_validate(svm, incData, cl[:len(incData)], cv=10, scoring=('precision', 'recall', 'f1', 'roc_auc'))
 for key in scores:
-    print(key, np.average(scores[key])*100)
+    print(key, np.average(scores[key])*100, "%")
 print("NB INC")
 scores = cross_validate(nb, incData, cl[:len(incData)], cv=10, scoring=('precision', 'recall', 'f1', 'roc_auc'))
 for key in scores:
-    print(key, np.average(scores[key])*100)
+    print(key, np.average(scores[key])*100, "%")
+
 print("\nSVM INV")
 scores = cross_validate(svm, invData, vl[:len(invData)], cv=10, scoring=('precision', 'recall', 'f1', 'roc_auc'))
 for key in scores:
-    print(key, np.average(scores[key])*100)
+    print(key, np.average(scores[key])*100, "%")
 print("NB INV")
 scores = cross_validate(nb, invData, vl[:len(invData)], cv=10, scoring=('precision', 'recall', 'f1', 'roc_auc'))
 for key in scores:
-    print(key, np.average(scores[key])*100)
+    print(key, np.average(scores[key])*100, "%")
+
 print("\nSVM MUL")
 scores = cross_validate(svm, mulData, ml[:len(mulData)], cv=10, scoring=('precision', 'recall', 'f1', 'roc_auc'))
 for key in scores:
-    print(key, np.average(scores[key])*100)
+    print(key, np.average(scores[key])*100, "%")
 print("NB MUL")
 scores = cross_validate(nb, mulData, ml[:len(mulData)], cv=10, scoring=('precision', 'recall', 'f1', 'roc_auc'))
 for key in scores:
-    print(key, np.average(scores[key])*100)
+    print(key, np.average(scores[key])*100, "%")
+
 print("\nSVM PER")
 scores = cross_validate(svm, perData, pl[:len(perData)], cv=10, scoring=('precision', 'recall', 'f1', 'roc_auc'))
 for key in scores:
-    print(key, np.average(scores[key])*100)
+    print(key, np.average(scores[key])*100, "%")
 print("NB PER")
 scores = cross_validate(nb, perData, pl[:len(perData)], cv=10, scoring=('precision', 'recall', 'f1', 'roc_auc'))
 for key in scores:
     print(key, np.average(scores[key])*100)
+
+    print(key, np.average(scores[key])*100, "%")
