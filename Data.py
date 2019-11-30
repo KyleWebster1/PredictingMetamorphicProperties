@@ -1,11 +1,10 @@
 import re
 
 from nltk.stem import WordNetLemmatizer
-from numpy import average
+from nltk.tokenize import sent_tokenize, word_tokenize
 from itertools import permutations
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity, linear_kernel
 import nltk
 
 
@@ -59,6 +58,7 @@ class Attributes:
                     features.append(total/len(pairs))
                 except:
                     features.append(0)
-
+                #Vector in Input
+                features.append(data[2].count("Vector"))
                 totalData.append(features)
         return totalData
