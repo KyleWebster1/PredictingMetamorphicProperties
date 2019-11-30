@@ -104,11 +104,30 @@ for val in missing:
     print(val)
     print(sum(x.count(val[0]) for x in addData))
 
-print("SVM")
+
 scores = cross_validate(svm, addData, al[:len(addData)], cv=10, scoring=('precision', 'recall', 'f1', 'roc_auc'))
+# Write to a csv file the scores
+scoreFile = open("scores.csv", "w")
+scoreFile.write("Algorithm, Fit_Time, Score_Time, Precision, Recall, F1, ROC_AUC\n")
+scoreFile.write("SVM, ")
+print("SVM")
+toWrite = ""
 for key in scores:
     print(key, np.average(scores[key]))
+    toWrite += (str(np.average(scores[key])) + ", ")
+toWrite = toWrite[:len(toWrite)-2]
+scoreFile.write(toWrite)
+scoreFile.write("\n")
+
 print("NB")
+scoreFile.write("NB, ")
 scores = cross_validate(nb, addData, al[:len(addData)], cv=10, scoring=('precision', 'recall', 'f1', 'roc_auc'))
+toWrite = ""
 for key in scores:
     print(key, np.average(scores[key]))
+    toWrite += (str(np.average(scores[key])) + ", ")
+toWrite = toWrite[:len(toWrite)-2]
+scoreFile.write(toWrite)
+scoreFile.write("\n")
+scoreFile.close()
+
