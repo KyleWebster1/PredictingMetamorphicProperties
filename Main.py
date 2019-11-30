@@ -8,6 +8,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import cross_validate
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.svm import SVC
+import warnings
+warnings.filterwarnings('ignore')
 
 # Input Features: Input Type(s), Number of Inputs, Output Type, Relevancy/Total, hasMath?
 import Data
@@ -28,7 +30,7 @@ cv = CountVectorizer(max_features=10000, strip_accents='unicode', analyzer='word
 tf = TfidfVectorizer(max_features=10000, strip_accents='unicode', analyzer='word', stop_words=None,
                      tokenizer=lambda doc: doc)
 # tf.fit_transform(open('coltAttributes.txt', "r"))
-svm = SVC()
+svm = SVC(gamma='scale')
 nb = MultinomialNB()
 
 addData, al, excData, el, incData, cl, invData, vl, mulData, ml, perData, pl = [], [], [], [], [], [], [], [], [], [], [], []
@@ -69,7 +71,7 @@ for line in perC.split('\n'):
         pl.append(int(line[-1]))
     except:
         pass
-print(c)
+#print(c)
 for row in c:
     # if row[0] in addC:
     #
@@ -87,10 +89,10 @@ for row in c:
     # else:
     #     pass
     # print(row[0])
-ad, ed, cd, vd, md, pd = [], [], [], [], [], []
-missing = []
+# ad, ed, cd, vd, md, pd = [], [], [], [], [], []
+# missing = []
 # ad = tf.fit_transform(addData)
-cv.fit_transform([open('coltAttributes.txt', 'r').read(), addC, excC, incC, invC, mulC, perC])
+# cv.fit_transform([open('coltAttributes.txt', 'r').read(), addC, excC, incC, invC, mulC, perC])
 # for w in range(len(addData)):
 #     ad.append(cv.transform(addData[w]))
 #     if ad[w].getnnz() == 1:
@@ -100,15 +102,55 @@ cv.fit_transform([open('coltAttributes.txt', 'r').read(), addC, excC, incC, invC
 #     vd.append(cv.transform(invData[w]))
 #     md.append(cv.transform(mulData[w]))
 #     pd.append(cv.transform(perData[w]))
-for val in missing:
-    print(val)
-    print(sum(x.count(val[0]) for x in addData))
+# for val in missing:
+#     print(val)
+#     print(sum(x.count(val[0]) for x in addData))
 
-print("SVM")
-scores = cross_validate(svm, addData, al[:len(addData)], cv=10, scoring=('precision', 'recall', 'f1', 'roc_auc'))
+print("SVM ADD")
+scores = cross_validate(svm, addData, al[:len(addData)], cv=5, scoring=('precision', 'recall', 'f1', 'roc_auc'))
 for key in scores:
     print(key, np.average(scores[key]))
-print("NB")
-scores = cross_validate(nb, addData, al[:len(addData)], cv=10, scoring=('precision', 'recall', 'f1', 'roc_auc'))
+print("NB ADD")
+scores = cross_validate(nb, addData, al[:len(addData)], cv=5, scoring=('precision', 'recall', 'f1', 'roc_auc'))
+for key in scores:
+    print(key, np.average(scores[key]))
+print("\nSVM EXC")
+scores = cross_validate(svm, excData, el[:len(excData)], cv=5, scoring=('precision', 'recall', 'f1', 'roc_auc'))
+for key in scores:
+    print(key, np.average(scores[key]))
+print("NB EXC")
+scores = cross_validate(nb, excData, el[:len(excData)], cv=5, scoring=('precision', 'recall', 'f1', 'roc_auc'))
+for key in scores:
+    print(key, np.average(scores[key]))
+print("\nSVM INC")
+scores = cross_validate(svm, incData, cl[:len(incData)], cv=5, scoring=('precision', 'recall', 'f1', 'roc_auc'))
+for key in scores:
+    print(key, np.average(scores[key]))
+print("NB INC")
+scores = cross_validate(nb, incData, cl[:len(incData)], cv=5, scoring=('precision', 'recall', 'f1', 'roc_auc'))
+for key in scores:
+    print(key, np.average(scores[key]))
+print("\nSVM INV")
+scores = cross_validate(svm, invData, vl[:len(invData)], cv=5, scoring=('precision', 'recall', 'f1', 'roc_auc'))
+for key in scores:
+    print(key, np.average(scores[key]))
+print("NB INV")
+scores = cross_validate(nb, invData, vl[:len(invData)], cv=5, scoring=('precision', 'recall', 'f1', 'roc_auc'))
+for key in scores:
+    print(key, np.average(scores[key]))
+print("\nSVM MUL")
+scores = cross_validate(svm, mulData, ml[:len(mulData)], cv=5, scoring=('precision', 'recall', 'f1', 'roc_auc'))
+for key in scores:
+    print(key, np.average(scores[key]))
+print("NB MUL")
+scores = cross_validate(nb, mulData, ml[:len(mulData)], cv=5, scoring=('precision', 'recall', 'f1', 'roc_auc'))
+for key in scores:
+    print(key, np.average(scores[key]))
+print("\nSVM PER")
+scores = cross_validate(svm, perData, pl[:len(perData)], cv=5, scoring=('precision', 'recall', 'f1', 'roc_auc'))
+for key in scores:
+    print(key, np.average(scores[key]))
+print("NB PER")
+scores = cross_validate(nb, perData, pl[:len(perData)], cv=5, scoring=('precision', 'recall', 'f1', 'roc_auc'))
 for key in scores:
     print(key, np.average(scores[key]))
