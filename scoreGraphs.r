@@ -1,11 +1,15 @@
 library("tidyverse")
+w = 1920
+h = 1080
+theme_update(text = element_text(size=40))
+
 ## Add functions
 addScores <- read.csv("addMetrics.csv") %>%
   filter(
     Type != c('fit_time', 'score_time')
   )
 
-png("graphs/addFunc.png", width = 614, height = 314)
+png("graphs/addFunc.png", width = w, height = h)
 
 # Plot scores
 ggplot(data = addScores, aes(x = Type, y = Score, fill = Algorithm)) +
@@ -23,7 +27,7 @@ excScores <- read.csv("excMetrics.csv") %>%
     Type != c('fit_time', 'score_time')
   )
 
-png("graphs/excFunc.png", width = 614, height = 314)
+png("graphs/excFunc.png", width = w, height = h)
 
 # Plot scores
 ggplot(data = excScores, aes(x = Type, y = Score, fill = Algorithm)) +
@@ -42,7 +46,7 @@ incScores <- read.csv("incMetrics.csv") %>%
     Type != c('fit_time', 'score_time')
   )
 
-png("graphs/incFunc.png", width = 614, height = 314)
+png("graphs/incFunc.png", width = w, height = h)
 # Plot scores
 ggplot(data = incScores, aes(x = Type, y = Score, fill = Algorithm)) +
   geom_col(width = 0.5, position = "dodge") +
@@ -59,7 +63,7 @@ invScores <- read.csv("invMetrics.csv") %>%
     Type != c('fit_time', 'score_time')
   )
 
-png("graphs/invFunc.png", width = 614, height = 314)
+png("graphs/invFunc.png", width = w, height = h)
 # Plot scores
 ggplot(data = invScores, aes(x = Type, y = Score, fill = Algorithm)) +
   geom_col(width = 0.5, position = "dodge") +
@@ -76,7 +80,7 @@ mulScores <- read.csv("mulMetrics.csv") %>%
     Type != c('fit_time', 'score_time')
   )
 
-png("graphs/mulFunc.png", width = 614, height = 314)
+png("graphs/mulFunc.png", width = w, height = h)
 # Plot scores
 ggplot(data = mulScores, aes(x = Type, y = Score, fill = Algorithm)) +
   geom_col(width = 0.5, position = "dodge") +
@@ -93,7 +97,7 @@ perScores <- read.csv("perMetrics.csv") %>%
     Type != c('fit_time', 'score_time')
   )
 
-png("graphs/perFunc.png", width = 614, height = 314)
+png("graphs/perFunc.png", width = w, height = h)
 # Plot scores
 ggplot(data = perScores, aes(x = Type, y = Score, fill = Algorithm)) +
   geom_col(width = 0.5, position = "dodge") +
